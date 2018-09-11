@@ -11,9 +11,15 @@ def isInside(v, e):
     else:
         return False
 
-print(isInside('x', 'x'))                          #  True   1 point
-print(isInside('x', 'y'))                          #  False  1 point
-print(isInside('x', ('x', '+', 'y')))              #  True   2 points
-print(isInside('x', ('a', '+', 'b')))              #  False  2 points
-print(isInside('+', ('a', '+', 'b')))              #  False  2 points
-print(isInside('x', (('m', '*', 'x'), '+', 'b')))  #  True   2 points
+def solve(v, q):
+    if isInside(v, q[0]):
+        return solving(v, q)
+    elif isInside(v, q[2]):
+        flippedQ = (q[2], q[1], q[0])
+        return solving(v, flippedQ)
+    else:
+        return None
+    
+
+def solving(v, q):
+    #whatever

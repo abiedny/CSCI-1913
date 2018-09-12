@@ -40,7 +40,7 @@ def solvingAddition(v, q):
     elif isInside(v, q[0][2]):
         #x is on the right of the left of the equation
         newThing = (q[0][2], '=', (q[2], '-', q[0][0]))
-    solving(v, newThing)
+    return solving(v, newThing)
 
 def solvingSubtract(v, q):
     if isInside(v, q[0][0]):
@@ -49,7 +49,7 @@ def solvingSubtract(v, q):
     elif isInside(v, q[0][2]):
         #x is on the right of the left of the equation
         newThing = (q[0][2], '=', (q[0][0], '-', q[2]))
-    solving(v, newThing)
+    return solving(v, newThing)
 
 def solvingMultiply(v, q):
     if isInside(v, q[0][0]):
@@ -58,7 +58,7 @@ def solvingMultiply(v, q):
     elif isInside(v, q[0][2]):
         #x is on the right of the left of the equation
         newThing = (q[0][2], '=', (q[2], '/', q[0][0]))
-    solving(v, newThing)
+    return solving(v, newThing)
 
 def solvingDivide(v, q):
     if isInside(v, q[0][0]):
@@ -67,4 +67,44 @@ def solvingDivide(v, q):
     elif isInside(v, q[0][2]):
         #x is on the right of the left of the equation
         newThing = (q[0][2], '=', (q[0][0], '/', q[2]))
-    solving(v, newThing)
+    return solving(v, newThing)
+
+print(isInside('x', 'x'))                          #  True   1 point
+print(isInside('x', 'y'))                          #  False  1 point
+print(isInside('x', ('x', '+', 'y')))              #  True   2 points
+print(isInside('x', ('a', '+', 'b')))              #  False  2 points
+print(isInside('+', ('a', '+', 'b')))              #  False  2 points
+print(isInside('x', (('m', '*', 'x'), '+', 'b')))  #  True   2 points
+
+print(solve('x', (('a', '+', 'x'), '=', 'c')))
+#  ('x', '=', ('c', '-', 'a'))  2 points
+
+print(solve('x', (('x', '+', 'b'), '=', 'c')))
+#  ('x', '=', ('c', '-', 'b'))  2 points
+
+print(solve('x', (('a', '-', 'x'), '=', 'c')))
+#  ('x', '=', ('a', '-', 'c'))  2 points
+
+print(solve('x', (('x', '-', 'b'), '=', 'c')))
+#  ('x', '=', ('c', '+', 'b'))  2 points
+
+print(solve('x', (('a', '*', 'x'), '=', 'c')))
+#  ('x', '=', ('c', '/', 'a'))  2 points
+
+print(solve('x', (('x', '*', 'b'), '=', 'c')))
+#  ('x', '=', ('c', '/', 'b'))  2 points
+
+print(solve('x', (('a', '/', 'x'), '=', 'c')))
+#  ('x', '=', ('a', '/', 'c'))  2 points
+
+print(solve('x', (('x', '/', 'b'), '=', 'c')))
+#  ('x', '=', ('c', '*', 'b'))  2 points
+
+print(solve('y', ('y', '=', (('m', '*', 'x'), '+', 'b'))))
+# ('y', '=', (('m', '*', 'x'), '+', 'b'))  2 points
+
+print(solve('x', ('y', '=', (('m', '*', 'x'), '+', 'b'))))
+# ('x', '=', (('y', '-', 'b'), '/', 'm'))  2 points
+
+print(solve('a', (('b', '+', 'c'), '=', ('d', '*', (('a', '/', 'e'), '-', 'f')))))
+# ('a', '=', (((('b', '+', 'c'), '/', 'd'), '+', 'f'), '*', 'e'))  5 points

@@ -8,29 +8,33 @@ public class Sieve {
         numbers = new boolean[max];
 
         //initialize everything but first two elements to true
-        for (int i = max; i > 1; i--) {
+        for (int i = max - 1; i > 1; i--) {
             numbers[i] = true;
         }
     }
 
     public void findPrimes() {
-        for (int i = numbers.length - 1; i >= 0; i--) {
+        for (int i = 0; i < numbers.length; i++) {
             if (numbers[i]) {
-
+                for (int j = i + 1; j < numbers.length; j++) {
+                    if (j % i == 0) {
+                        numbers[j] = false;
+                    }
+                }
             }
         }
     }
 
     public String toString() {
         //returns index of trues
-        String retVal = "";
+        StringBuilder retVal = new StringBuilder();
 
-        for (int i = numbers.length - 1; i >= 0; i--) {
+        for (int i = 0; i < numbers.length; i++) {
             if (numbers[i]) {
-                retVal += i + " ";
+                retVal.append(i).append(" ");
             }
         }
 
-        return retVal;
+        return retVal.toString();
     }
 }

@@ -10,13 +10,17 @@ class Mumble:
         if max <= 0:
             raise ValueError
             
-        retVal = ""
+        
         
     def nextLetter(self, lastLetter=' '):
         letArr = self.choosers[lastLetter][1:]
         randVal = self.rng.choose(self.choosers[lastLetter][0])
 
-
+        for i, v in enumerate(letArr):
+            if type(v) == int:
+                randVal -= v
+            if randVal <= 0:
+                return letArr[i - 1] #next letter
 
     def test(self, count, min, max):
         for ind in range(0, count - 1):

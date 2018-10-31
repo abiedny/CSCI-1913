@@ -10,6 +10,7 @@ public class Map<Key, Value>
         }
         keys = (Key[]) new Object[length];
         values = (Value[]) new Object[length];
+        count = 0;
     }
 
     public Value get(Key key) {
@@ -19,7 +20,13 @@ public class Map<Key, Value>
     }
 
     private boolean isEqual(Key leftKey, Key rightKey) {
-        if (leftKey == rightKey || leftKey.equals(rightKey)) { //null comparison check thingy first
+        if (leftKey == null || rightKey == null) { //for nulls
+            if (leftKey == rightKey) {
+                return true;
+            }
+            return false;
+        }
+        else if (leftKey.equals(rightKey)) { //now we can safely do equals method
             return true;
         }
         return false;
@@ -31,14 +38,26 @@ public class Map<Key, Value>
     }
 
     public void put(Key key, Value value) {
+        //see if the key already exists
+        int index = this.where(key);
 
+        if (index >= 0) {
+            values[index] = value;
+        }
+        else if (index == -1 && this.count < keys.length) {
+            keys[count] = key;
+            values[count] = value;
+            count++;
+        }
+        else if (this.count >= keys.length) {
+            //no more room!
+            throw new IllegalStateException();
+        }
     }
 
     private int where(Key key) {
-        int i = 0;
-        for (Key eachKey : keys) {
-            if (this.isEqual(eachKey, key)) return i;
-            i++;
+        for (int i = 0; i < count; i++) {
+            if (keys[i] == key) return i;
         }
         return -1;
     }

@@ -62,3 +62,26 @@ public class Map<Key, Value>
         return -1;
     }
 }
+
+/* Outputs:
+No negatives
+true
+false
+true
+true
+true
+false
+Ginny
+Lavender
+null
+Wormtail
+No Joanne
+true
+true
+Gellert
+Ginny
+Hermione
+null
+null
+No Draco
+ */

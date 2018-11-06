@@ -70,5 +70,46 @@ public class RunnyStack<Base> {
         if (base1 == null || base2 == null) return base1 == base2;
         return base1.equals(base2);
     }
-
 }
+/* Returns:
+true
+0
+0
+No pop
+No peek
+A
+1
+1
+false
+B
+2
+2
+B
+3
+2
+B
+4
+2
+C
+5
+3
+C
+6
+3
+C
+5
+3
+B
+4
+2
+B
+3
+2
+A
+1
+1
+true
+0
+0
+No peek
+ */

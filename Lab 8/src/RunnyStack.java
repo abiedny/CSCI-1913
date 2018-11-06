@@ -51,7 +51,7 @@ public class RunnyStack<Base> {
         }
         else {
             //there's already a base on the stack
-            if (currentTop.base == base) {
+            if (isEqual(currentTop.base, base)) {
                 currentTop.length++;
             }
             else {
@@ -64,6 +64,11 @@ public class RunnyStack<Base> {
     public int runs() {
         //this should be the number of Runs on the stack, ignore length of them
         return this.runs;
+    }
+
+    private boolean isEqual(Base base1, Base base2) {
+        if (base1 == null || base2 == null) return base1 == base2;
+        return base1.equals(base2);
     }
 
 }

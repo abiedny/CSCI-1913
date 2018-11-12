@@ -97,3 +97,22 @@ class ArrayQueue<Base>
         return new Iterator();
     }
 }
+
+/* Prints:
+A
+B
+C
+false
+A
+B
+C
+true
+X
+Y
+Z
+false
+X
+Y
+Z
+trues
+ */

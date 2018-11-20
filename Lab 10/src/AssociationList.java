@@ -82,3 +82,25 @@ public class AssociationList<Key, Value> {
         }
     }
 }
+/* Returns:
+false
+No null
+true
+false
+true
+true
+true
+false
+Lavender
+Ginny
+null
+Wormtail
+No Joanne
+false
+true
+null
+Ginny
+Ginny
+Hermione
+No Dean
+ */

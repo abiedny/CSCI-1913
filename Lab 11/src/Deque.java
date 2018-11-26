@@ -33,15 +33,25 @@ public class Deque<Base> {
         return;
     }
 
-    public void dequeueFront() {
-
+    public Base dequeueFront() {
+        if (isEmpty()) throw new IllegalStateException();
+        Node currentFront = head.left;
+        Base retVal = currentFront.object;
+        currentFront.left.right = head;
+        currentFront.right.left = currentFront.left;
+        return retVal;
     }
 
-    public void dequeueRear() {
-
+    public Base dequeueRear() {
+        if (isEmpty()) throw new IllegalStateException();
+        Node currentRear = head.right;
+        Base retVal = currentRear.object;
+        currentRear.right.left = head;
+        currentRear.left.right = currentRear.right;
+        return retVal;
     }
 
     public boolean isEmpty() {
-        return (head.left == null || head.right == null);
+        return (head.left == head || head.right == head);
     }
 }

@@ -55,3 +55,25 @@ public class Deque<Base> {
         return (head.left == head || head.right == head);
     }
 }
+/* Will return:
+true
+No dequeueFront.
+No dequeueRear.
+false
+C
+B
+A
+true
+A
+B
+C
+true
+C
+B
+A
+true
+A
+B
+C
+true
+ */

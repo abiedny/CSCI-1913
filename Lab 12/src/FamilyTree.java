@@ -24,7 +24,7 @@ class FamilyTree {
     private Node find(String name, Node root) {
         if (root.name.equals(name)) return root; //the first thing on a node we do is a check so don't worry bout that
         //this is the end of the tree
-        // if it's the end and we've found nothing, throw a null down the call stack, and the previous recursion will deal with it
+        // if it's the end and we've found nothing, send a null down the call stack, and the previous recursion will deal with it
         if (root.father == null) return null;
         Node shifted = find(name, root.father);
         //if the previous recursion returns null, check the mother stuff from this node

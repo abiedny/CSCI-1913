@@ -46,7 +46,7 @@ class ShuffleTree<Value> {
         //add k-v pairs from the arrays in order of appearance to bst at root
         //also keep track of tree height its a weird way but I promise it works
         int localHeight;
-        for (int i = 0; i < keys.length; i++) {
+        for (int i = 0; i < count; i++) {
             localHeight = this.add(root, keys[i], values[i], 1);
             this.height = (localHeight > height) ? localHeight : height;
         }
@@ -54,6 +54,7 @@ class ShuffleTree<Value> {
         //just reinitialize cuz neither are primitive types lol
         keys = new String[keys.length];
         values = (Value[]) new Object[keys.length];
+        this.count = 0; //and then reset count
     }
 
     private int add(Node inRoot, String inKey, Value inVal, int localHeight) {
@@ -64,14 +65,20 @@ class ShuffleTree<Value> {
         else if (cval < 0) {
             //key should go left, is before the current node alphabetically
             if (inRoot.left == null) inRoot.left = new Node(inKey, inVal, null, null);
-            else return this.add(inRoot.left, inKey, inVal, localHeight++);
+            else {
+                localHeight++;
+                return this.add(inRoot.left, inKey, inVal, localHeight);
+            }
         }
         else if (cval > 0) {
             //key should go right, is after the current node alphabetically
             if (inRoot.right == null) inRoot.right = new Node(inKey, inVal, null, null);
-            else return this.add(inRoot.right, inKey, inVal, localHeight++);
+            else {
+                localHeight++;
+                return this.add(inRoot.right, inKey, inVal, localHeight);
+            }
         }
-        return -1; //just so intellij will shut up TODO: remove
+        return localHeight;
     }
 
     public Value get(String key) {
@@ -104,6 +111,7 @@ class ShuffleTree<Value> {
 
         keys[count] = key;
         values[count] = value;
+        count++;
     }
 
 }

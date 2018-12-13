@@ -97,7 +97,7 @@ class ShuffleTree<Value> {
         if (cval == 0) return inRoot.value; //found the matching key
         else if (cval < 0) return this.get(key, inRoot.left); //key will be left
         else if (cval > 0) return this.get(key, inRoot.right); //key will be right
-        else return null; //just so intellij will shut up TODO: remove
+        else return null; //just so intellij will shut up. function will throw nullptr before getting here
     }
 
     public int height() {
